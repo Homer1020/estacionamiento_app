@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Estacionamiento App',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -307,18 +307,18 @@ return [
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'      => 'Terminal',
+            'route'     => 'terminals.index',
+            'icon'      => 'fa fa-car',
+            'active'    => ['regex:@^terminal/[a-z\-]+$@']
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Servicios',
+            'route'       => 'services.index',
+            'icon'        => 'fa fa-hand-holding-heart',
+            'active'      => ['regex:@^servicios/[a-z\-\/0-9]+$@']
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'CONFIGURACIONES'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -366,22 +366,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 
