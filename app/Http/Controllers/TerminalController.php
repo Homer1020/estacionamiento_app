@@ -53,6 +53,7 @@ class TerminalController extends Controller
     public function checkout(Transaccion $transaction) {
         $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
 
+        
         $invoice = $transaction->factura()->create([
             'codigo'      => uniqid(),
             'monto_total' => $costo_aparcamiento

@@ -14,13 +14,19 @@
       <ul class="list-group mb-3">
         <li class="list-group-item"><strong>Código:</strong> {{ $invoice->codigo }}</li>
         <li class="list-group-item"><strong>Fecha:</strong> {{ $invoice->created_at }}</li>
+        <li class="list-group-item"><strong>Fecha:</strong> {{ $invoice->created_at }}</li>
         <li class="list-group-item"><strong>Vehiculo:</strong> {{ $invoice->transaccion->vehiculo->matricula }}</li>
       </ul>
 
       <h2 class="h5 mb-3 text-uppercase">Servicios</h2>
       <ul class="list-group mb-3">
         <li class="list-group-item">
-          <strong>Aparcamiento: </strong> {{ $invoice->transaccion->calcular_costo_aparcamiento() }}$
+          <h3 class="h6 text-uppercase font-weight-bold">Aparcamiento</h3>
+          <strong>Costo: </strong> {{ $invoice->transaccion->calcular_costo_aparcamiento() }}$
+          <br>
+          <strong>Entrada: </strong> {{ $invoice->transaccion->fecha_entrada }}
+          <br>
+          <strong>Salida: </strong> {{ $invoice->transaccion->fecha_salida }}
         </li>
       </ul>
 

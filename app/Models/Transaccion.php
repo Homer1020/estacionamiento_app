@@ -29,11 +29,11 @@ class Transaccion extends Model
 
     public function calcular_costo_aparcamiento(): int {
         if(!$this->fecha_salida) {
-            $this->fecha_salida = Carbon::now()->toDateTimeString();
+            $this->fecha_salida = Carbon::now()->setTimezone('America/Caracas')->toDateTimeString();
             $this->save();
         }
-        $startDate = Carbon::parse($this->fecha_entrada);
-        $endDate = Carbon::parse($this->fecha_salida);
+        $startDate = Carbon::parse($this->fecha_entrada)->setTimezone('America/Caracas');
+        $endDate = Carbon::parse($this->fecha_salida)->setTimezone('America/Caracas');
         $costo_x_hora = $this->ubicacion->costo_x_hora;
         $horas_estacionado = $endDate->diff($startDate)->h;
         return $horas_estacionado * $costo_x_hora;
