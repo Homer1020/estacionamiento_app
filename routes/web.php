@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TerminalController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,9 @@ Route::get('terminal/registrar-entrada', [TerminalController::class, 'create'])-
 Route::post('terminal/registrar-entrada', [TerminalController::class, 'store'])->name('terminals.store');
 Route::put('terminal/{id}/salida', [TerminalController::class, 'update'])->name('terminals.update');
 Route::delete('terminal/{transaction}/eliminar', [TerminalController::class, 'destroy'])->name('terminals.destroy');
+Route::post('terminal/{transaction}/facturar', [TerminalController::class, 'checkout'])->name('terminals.checkout');
+
+Route::get('terminal/factura/{invoice}', InvoiceController::class)->name('invoices.show');
 
 /**
  * RUTAS SERVICIOS

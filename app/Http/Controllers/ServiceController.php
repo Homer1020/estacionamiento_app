@@ -41,9 +41,9 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show(Service $servicio)
     {
-        //
+        return view('services.show', compact('servicio'));
     }
 
     /**
@@ -57,16 +57,23 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Service $servicio)
     {
-        //
+        $servicio->servicio = $request->input('servicio');
+        $servicio->costo_x_hora = $request->input('costo_x_hora');
+        $servicio->descripcion = $request->input('descripcion');
+        
+        $servicio->save();
+    
+        return response()->redirectToRoute('services.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(Service $servicio)
     {
-        //
+        $servicio->delete();
+        return response()->redirectToRoute('services.index');
     }
 }

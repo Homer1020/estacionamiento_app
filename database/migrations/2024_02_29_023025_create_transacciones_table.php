@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('vehiculo_id')->references('id')->on('vehiculos');
             $table->foreignId('ubicacion_id')->references('id')->on('ubicaciones');
             $table->dateTime('fecha_entrada')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->boolean('es_reserva')->default(0);
             $table->softDeletes();
             $table->dateTime('fecha_salida')->nullable();
         });

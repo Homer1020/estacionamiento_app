@@ -18,6 +18,7 @@
                             type="text"
                             placeholder="xxx xxx xxx"
                             label="Matricula"
+                            autocomplete="off"
                         />
                     </div>
                     <div class="col-md-3">
@@ -64,11 +65,12 @@
                                 @if ($transaction->fecha_salida)
                                     {{ $transaction->fecha_salida }}
                                 @else
-                                    <form action="{{ route('terminals.update', $transaction->id) }}" method="POST">
+                                    {{-- <form class="d-inline-block" action="{{ route('terminals.update', $transaction->id) }}" method="POST">
                                         @method('PUT')
                                         @csrf
-                                        <input type="submit" value="Marcar salida" class="btn btn-outline-primary">
-                                    </form>
+                                        <input type="submit" value="Marcar salida" class="btn btn-primary">
+                                    </form> --}}
+                                    {{ str_repeat('-', 10) }}
                                 @endif
                             </td>
                             <td>
@@ -76,16 +78,27 @@
                                     <i class="fa fa-plus"></i>
                                     Servicios
                                 </a>
-                                <a href="" class="btn btn-success">
-                                    <i class="fa fa-file-invoice"></i>
-                                    Facturar
-                                </a>
+                                
+                                @if ($transaction->factura)
+                                    <a class="btn btn-success" href="{{ route('invoices.show', $transaction->factura) }}">
+                                        <i class="fa fa-file-invoice"></i>
+                                        Ver factura
+                                    </a>
+                                @else
+                                    <form class="d-inline" action="{{ route('terminals.checkout', $transaction) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa fa-file-invoice"></i>
+                                            Facturar
+                                        </button>
+                                    </form>
+                                @endif
                                 <form action="{{ route('terminals.destroy', $transaction) }}" class="d-inline" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-secondary">
-                                        <i class="fa fa-eye-slash"></i>
-                                        Ocultar
+                                        <i class="fa fa-trash"></i>
+                                        Eliminar
                                     </button>
                                 </form>
                             </td>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +13,7 @@ class TerminalController extends Controller
 {
     public function index() {
         $ubications = Ubicacion::all();
-        $transactions = Transaccion::orderBy('id', 'DESC')->get();
+        $transactions = Transaccion::with(['vehiculo', 'ubicacion', 'factura'])->orderBy('id', 'DESC')->get();
         return view('terminal.index', [
             'transactions'  => $transactions,
             'ubications'   => $ubications
@@ -48,5 +48,20 @@ class TerminalController extends Controller
     public function destroy(Transaccion $transaction) {
         $transaction->delete();
         return response()->redirectToRoute('terminals.index');
+    }
+
+    public function checkout(Transaccion $transaction) {
+        if(!$transaction->fecha_salida) {
+            $transaction->fecha_salida = DB::raw('CURRENT_TIMESTAMP');
+            $transaction->save();
+        }
+
+        $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
+
+        $invoice = $transaction->factura()->create([
+            'codigo'      => uniqid(),
+            'monto_total' => $costo_aparcamiento
+        ]);
+        return response()->redirectToRoute('invoices.show', compact('invoice'));
     }
 }

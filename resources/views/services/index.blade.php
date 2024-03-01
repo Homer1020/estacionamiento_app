@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th>Servicio</th>
-                        <th>Costo por hora</th>
+                        <th>Costo por hora (en dolares)</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -35,11 +35,27 @@
                               {{ $service->servicio }}
                             </td>
                             <td>
-                              {{ $service->costo_x_hora }}
+                              {{ $service->costo_x_hora }}$
                             </td>
                             <td>
-                                <a href="{{ route('services.edit', $service) }}" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Eliminar</a>
+                                <a href="{{ route('services.show', $service) }}" class="btn btn-primary">
+                                    <i class="fa fa-eye "></i>
+                                    Detalles
+                                </a>
+                            
+                                <a href="{{ route('services.edit', $service) }}" class="btn btn-warning">
+                                    <i class="fa fa-pen"></i>
+                                    Editar
+                                </a>
+                                
+                                <form action="{{ route('services.destroy', $service) }}" class="d-inline" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                        Eliminar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty
