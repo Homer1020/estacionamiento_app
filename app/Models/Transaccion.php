@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Transaccion extends Model
 {
@@ -27,6 +28,10 @@ class Transaccion extends Model
     }
 
     public function calcular_costo_aparcamiento(): int {
+        if(!$this->fecha_salida) {
+            $this->fecha_salida = Carbon::now()->toDateTimeString();
+            $this->save();
+        }
         $startDate = Carbon::parse($this->fecha_entrada);
         $endDate = Carbon::parse($this->fecha_salida);
         $costo_x_hora = $this->ubicacion->costo_x_hora;

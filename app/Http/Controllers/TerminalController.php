@@ -51,11 +51,6 @@ class TerminalController extends Controller
     }
 
     public function checkout(Transaccion $transaction) {
-        if(!$transaction->fecha_salida) {
-            $transaction->fecha_salida = DB::raw('CURRENT_TIMESTAMP');
-            $transaction->save();
-        }
-
         $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
 
         $invoice = $transaction->factura()->create([
