@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('plugins.DatatablesPlugin', true)
+
 @section('title', 'Estacionamiento | Terminal')
 
 @section('content_header')
@@ -7,6 +9,7 @@
 @stop
 
 @section('content')
+
 <div class="card">
     <div class="card-body">
             <form action="{{ route('terminals.create') }}" method="POST">
@@ -65,11 +68,6 @@
                                 @if ($transaction->fecha_salida)
                                     {{ $transaction->fecha_salida }}
                                 @else
-                                    {{-- <form class="d-inline-block" action="{{ route('terminals.update', $transaction->id) }}" method="POST">
-                                        @method('PUT')
-                                        @csrf
-                                        <input type="submit" value="Marcar salida" class="btn btn-primary">
-                                    </form> --}}
                                     {{ str_repeat('-', 10) }}
                                 @endif
                             </td>
@@ -85,13 +83,10 @@
                                         Ver factura
                                     </a>
                                 @else
-                                    <form class="d-inline" action="{{ route('terminals.checkout', $transaction) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-file-invoice"></i>
-                                            Facturar
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('terminals.checkoutConfirm', $transaction) }}" class="btn btn-success">
+                                        <i class="fa fa-file-invoice"></i>
+                                        Facturar
+                                    </a>
                                 @endif
                                 <form action="{{ route('terminals.destroy', $transaction) }}" class="d-inline" method="POST">
                                     @method('DELETE')
@@ -118,8 +113,4 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
 @stop

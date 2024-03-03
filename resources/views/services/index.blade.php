@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th>Servicio</th>
-                        <th>Costo por hora (en dolares)</th>
+                        <th>Costo base (en dolares)</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

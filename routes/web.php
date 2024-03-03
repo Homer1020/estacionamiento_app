@@ -31,7 +31,7 @@ Route::post('terminal/registrar-entrada', [TerminalController::class, 'store'])-
 Route::put('terminal/{id}/salida', [TerminalController::class, 'update'])->name('terminals.update');
 Route::delete('terminal/{transaction}/eliminar', [TerminalController::class, 'destroy'])->name('terminals.destroy');
 Route::post('terminal/{transaction}/facturar', [TerminalController::class, 'checkout'])->name('terminals.checkout');
-Route::get('terminal/{transaction}/agregar-servicio', [TerminalController::class, 'service'])->name('terminals.service');
+Route::get('terminal/{transaction}/facturar', [TerminalController::class, 'checkoutConfirm'])->name('terminals.checkoutConfirm');
 
 Route::get('terminal/factura/{invoice}', InvoiceController::class)->name('invoices.show');
 

@@ -311,7 +311,7 @@ return [
             'route'     => 'terminals.index',
             'icon'      => 'fa fa-car',
             'active'    => ['regex:@^terminal/[a-z\-]+$@']
-        ],
+        ],  
         [
             'text'        => 'Servicios',
             'route'       => 'services.index',
@@ -405,7 +405,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

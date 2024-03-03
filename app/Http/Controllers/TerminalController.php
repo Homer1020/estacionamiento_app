@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,9 +56,22 @@ class TerminalController extends Controller
         return view('facturas.create');
     }
 
-    public function checkout(Transaccion $transaction) {
-        $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
+    public function checkoutConfirm(Transaccion $transaction) {
+        return view('terminal.checkout', compact('transaction'));
+    }
 
+    public function checkout(Request $request, Transaccion $transaction) {
+
+        $cliente = Cliente::create([
+            'nombre'    => $request->input('client_nombre'),
+            'apellido'    => $request->input('client_apellido'),
+            'cedula'    => $request->input('client_cedula'),
+            'telefono'    => $request->input('client_telefono'),
+        ]);
+
+        $cliente->vehiculos()->save($transaction->vehiculo);
+
+        $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
         
         $invoice = $transaction->factura()->create([
             'codigo'      => uniqid(),

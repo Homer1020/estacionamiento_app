@@ -11,4 +11,8 @@ class Vehiculo extends Model
     public function transacciones() {
         return $this->hasMany(Transaccion::class);
     }
+
+    public function propietario() {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
 }
