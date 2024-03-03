@@ -10,6 +10,21 @@
 
 @section('content')
 
+@php
+    $heads = [
+        'Vehiculo',
+        'Puesto',
+        'Fecha entrada',
+        'Fecha salida',
+        'Acciones'
+    ];
+
+    $config = [
+        'order'     => [2, 'desc'],
+        'columns'   => [null, null, null, null, ['orderable' => false]]
+    ]
+@endphp
+
 <div class="card">
     <div class="card-body">
             <form action="{{ route('terminals.create') }}" method="POST">
@@ -48,8 +63,14 @@
                     </div>
                 </div>
             </form>
-            <table class="table table-bordered">
-                <thead>
+            <x-adminlte-datatable
+                id="terminal-table"
+                :heads="$heads"
+                :config="$config"
+                striped
+                hoverable
+            >
+                {{-- <thead>
                     <tr>
                         <th>Vehiculo</th>
                         <th>Puesto</th>
@@ -57,56 +78,51 @@
                         <th>Fecha salida</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
-                <tbody>
-                    @forelse ($transactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->vehiculo->matricula }}</td>
-                            <td>{{ $transaction->ubicacion->ubicacion }}</td>
-                            <td>{{ $transaction->fecha_entrada }}</td>
-                            <td>
-                                @if ($transaction->fecha_salida)
-                                    {{ $transaction->fecha_salida }}
-                                @else
-                                    {{ str_repeat('-', 10) }}
-                                @endif
-                            </td>
-                            <td>
-                                <a href="" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>
-                                    Servicios
+                </thead> --}}
+                {{-- <tbody>
+                    
+                </tbody> --}}
+                @forelse ($transactions as $transaction)
+                    <tr>
+                        <td>{{ $transaction->vehiculo->matricula }}</td>
+                        <td>{{ $transaction->ubicacion->ubicacion }}</td>
+                        <td>{{ $transaction->fecha_entrada }}</td>
+                        <td>
+                            @if ($transaction->fecha_salida)
+                                {{ $transaction->fecha_salida }}
+                            @else
+                                {{ str_repeat('-', 10) }}
+                            @endif
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-info">
+                                <i class="fa fa-plus"></i>
+                                Servicios
+                            </a>
+                            
+                            @if ($transaction->factura)
+                                <a class="btn btn-success" href="{{ route('invoices.show', $transaction->factura) }}">
+                                    <i class="fa fa-file-invoice"></i>
+                                    Ver factura
                                 </a>
-                                
-                                @if ($transaction->factura)
-                                    <a class="btn btn-success" href="{{ route('invoices.show', $transaction->factura) }}">
-                                        <i class="fa fa-file-invoice"></i>
-                                        Ver factura
-                                    </a>
-                                @else
-                                    <a href="{{ route('terminals.checkoutConfirm', $transaction) }}" class="btn btn-success">
-                                        <i class="fa fa-file-invoice"></i>
-                                        Facturar
-                                    </a>
-                                @endif
-                                <form action="{{ route('terminals.destroy', $transaction) }}" class="d-inline" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-secondary">
-                                        <i class="fa fa-trash"></i>
-                                        Eliminar
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5">
-                                <p>No hay transacciones aun</p>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                            @else
+                                <a href="{{ route('terminals.checkoutConfirm', $transaction) }}" class="btn btn-success">
+                                    <i class="fa fa-file-invoice"></i>
+                                    Facturar
+                                </a>
+                            @endif
+                            <form action="{{ route('terminals.destroy', $transaction) }}" class="d-inline" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fa fa-trash"></i>
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </x-adminlte-datatable>
         </div>
     </div>
 @stop
