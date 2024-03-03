@@ -21,7 +21,10 @@
 
     $config = [
         'order'     => [2, 'desc'],
-        'columns'   => [null, null, null, null, ['orderable' => false]]
+        'columns'   => [null, null, null, null, ['orderable' => false]],
+        'language'  => [
+            'url'   => '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json' // this is the solution
+        ]
     ]
 @endphp
 
@@ -117,3 +120,13 @@
 @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
+
+@section('js')
+    <script>
+        // $('#terminal-table').DataTable({
+        //     language: {
+        //        url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
+        //     }
+        // })
+    </script>
+@endsection
