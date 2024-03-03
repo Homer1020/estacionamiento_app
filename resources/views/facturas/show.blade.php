@@ -14,7 +14,6 @@
       <ul class="list-group mb-3">
         <li class="list-group-item"><strong>Código:</strong> {{ $invoice->codigo }}</li>
         <li class="list-group-item"><strong>Fecha:</strong> {{ $invoice->created_at }}</li>
-        <li class="list-group-item"><strong>Fecha:</strong> {{ $invoice->created_at }}</li>
         <li class="list-group-item"><strong>Vehiculo:</strong> {{ $invoice->transaccion->vehiculo->matricula }}</li>
       </ul>
 
@@ -27,6 +26,8 @@
           <strong>Entrada: </strong> {{ $invoice->transaccion->fecha_entrada }}
           <br>
           <strong>Salida: </strong> {{ $invoice->transaccion->fecha_salida }}
+          <br>
+          <strong>Ubicacion: </strong> {{ $invoice->transaccion->ubicacion->ubicacion }}
         </li>
       </ul>
 

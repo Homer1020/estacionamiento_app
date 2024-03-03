@@ -50,6 +50,10 @@ class TerminalController extends Controller
         return response()->redirectToRoute('terminals.index');
     }
 
+    public function precheckout(Transaccion $transaction) {
+        return view('facturas.create');
+    }
+
     public function checkout(Transaccion $transaction) {
         $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
 
