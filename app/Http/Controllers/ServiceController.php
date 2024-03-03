@@ -29,6 +29,10 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'servicio'      => 'string',
+            'costo_x_hora'  => 'integer',
+        ]);
         Service::create([
             'servicio'  => $request->input('servicio'),
             'costo_x_hora'  => $request->input('costo_x_hora'),

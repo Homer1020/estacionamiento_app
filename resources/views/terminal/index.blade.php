@@ -68,20 +68,7 @@
                 :heads="$heads"
                 :config="$config"
                 striped
-                hoverable
             >
-                {{-- <thead>
-                    <tr>
-                        <th>Vehiculo</th>
-                        <th>Puesto</th>
-                        <th>Fecha entrada</th>
-                        <th>Fecha salida</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead> --}}
-                {{-- <tbody>
-                    
-                </tbody> --}}
                 @forelse ($transactions as $transaction)
                     <tr>
                         <td>{{ $transaction->vehiculo->matricula }}</td>
