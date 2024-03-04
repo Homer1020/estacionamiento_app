@@ -12,6 +12,7 @@
       <a href="{{ route('terminals.index') }}" class="btn btn-primary mb-3">Regresar</a>
       <form action="{{ route('terminals.checkout', $transaction) }}" method="POST">
         <h2 class="h5 mb-3 text-uppercase">Datos del cliente</h2>
+        <a href="#" class="mb-3 d-block">Este cliente ya existe?</a>
         @if (!$transaction->vehiculo->cliente_id)
           <div class="row">
             <div class="col-md-6">
@@ -58,8 +59,17 @@
         @endif
 
         <h2 class="h5 mb-3 text-uppercase">Servicios</h2>
+
+        <ul class="list-group mb-3">
+          <li class="list-group-item">
+            <h3 class="h6 text-uppercase font-weight-bold">Aparcamiento</h3>
+            <strong>Ubicacion: </strong> {{ $transaction->ubicacion->ubicacion }}
+            <br>
+            <strong>Costo x hora: </strong> {{ $transaction->ubicacion->costo_x_hora }}$
+          </li>
+        </ul>
         @csrf
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success mt-3">
           <i class="fa fa-file-invoice"></i>
           Facturar
         </button>

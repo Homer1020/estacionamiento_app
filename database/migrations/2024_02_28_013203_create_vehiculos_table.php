@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('matricula')->unique();
             $table->string('color')->nullable();
             $table->string('anio')->nullable();
+            $table->boolean('estacionado')->default(false);
             $table->timestamps();
         });
     }

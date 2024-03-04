@@ -26,16 +26,22 @@ class TerminalController extends Controller
     }
 
     public function store(Request $request) {
-        // buscar vehiculo o crear si no existe
+        // buscar vehiculo o crear si no existe y estacionarlo
         $vehiculo = Vehiculo::firstOrCreate([
-            'matricula' => $request->input('matricula')
+            'matricula'     => $request->input('matricula')
         ]);
+
+        if($vehiculo->estacionado) {
+            return response()->redirectToRoute('terminals.index');
+        }
 
         // crear transaccion a partir del vehiculo
         $vehiculo->transacciones()->create([
             'ubicacion_id' => $request->input('ubicacion')
         ]);
 
+        $vehiculo->estacionado = true;
+        $vehiculo->save();
         return response()->redirectToRoute('terminals.index')->with('info', [
             'type'  => 'success',
             'msg'   => 'Se agrego correctamente.'
@@ -64,6 +70,7 @@ class TerminalController extends Controller
 
     public function checkout(Request $request, Transaccion $transaction) {
 
+        // manage client
         if(!$request->input('client_id')) {
             // validate form data
             $payload = $request->validate([
@@ -83,6 +90,9 @@ class TerminalController extends Controller
         } else {
             $cliente = Cliente::first('id', $request->input('client_id'));
         }
+
+        // el vehiculo ya no esta estacionado
+        $transaction->vehiculo->estacionado = false;
 
         $cliente->vehiculos()->save($transaction->vehiculo);
 
