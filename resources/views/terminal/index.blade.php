@@ -25,7 +25,7 @@
         'language'  => [
             'url'   => '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json' // this is the solution
         ]
-    ]
+    ];
 @endphp
 
 <div class="card">
@@ -49,9 +49,13 @@
                             placeholder="xxx xxx xxx"
                             label="Ubicación"
                         >
-                            <option selected disabled>Seleccionar ubicación</option>
                             @foreach ($ubications as $ubication)
-                                <option value="{{ $ubication->id }}">{{ $ubication->ubicacion }} ({{ $ubication->costo_x_hora }}$ la hora)</option>
+                                @php
+                                    $notAvailable = $ubication->transacciones()->where('fecha_salida', null)->exists()
+                                @endphp
+                                <option value="{{ $ubication->id }}" {{ $notAvailable ? 'disabled' : '' }}>{{ $ubication->ubicacion }} ({{ $ubication->costo_x_hora }}$ la hora)
+                                    {{ $notAvailable ? 'En uso' : 'Disponible' }}
+                                </option>
                             @endforeach
                         </x-adminlte-select>
                         

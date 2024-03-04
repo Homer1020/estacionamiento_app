@@ -54,6 +54,7 @@
               <strong>Telefono: </strong> {{ $transaction->vehiculo->propietario->telefono }}
             </li>
           </ul>
+          <input type="hidden" name="client_id" value="{{ $transaction->vehiculo->propietario->id }}">
         @endif
 
         <h2 class="h5 mb-3 text-uppercase">Servicios</h2>

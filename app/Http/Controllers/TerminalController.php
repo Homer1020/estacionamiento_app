@@ -6,15 +6,14 @@ use App\Models\Cliente;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TerminalController extends Controller
 {
     public function index() {
-        $ubications = Ubicacion::all();
+        $ubications = Ubicacion::with('transacciones')->get();
         $transactions = Transaccion::with(['vehiculo', 'ubicacion', 'factura'])->orderBy('id', 'DESC')->get();
         return view('terminal.index', [
             'transactions'  => $transactions,
@@ -62,12 +61,16 @@ class TerminalController extends Controller
 
     public function checkout(Request $request, Transaccion $transaction) {
 
-        $cliente = Cliente::create([
-            'nombre'    => $request->input('client_nombre'),
-            'apellido'    => $request->input('client_apellido'),
-            'cedula'    => $request->input('client_cedula'),
-            'telefono'    => $request->input('client_telefono'),
-        ]);
+        if(!$request->input('client_id')) {
+            $cliente = Cliente::create([
+                'nombre'    => $request->input('client_nombre'),
+                'apellido'    => $request->input('client_apellido'),
+                'cedula'    => $request->input('client_cedula'),
+                'telefono'    => $request->input('client_telefono'),
+            ]);
+        } else {
+            $cliente = Cliente::first('id', $request->input('client_id'));
+        }
 
         $cliente->vehiculos()->save($transaction->vehiculo);
 

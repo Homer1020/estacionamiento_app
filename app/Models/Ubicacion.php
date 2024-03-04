@@ -9,4 +9,8 @@ class Ubicacion extends Model
     public $table = 'ubicaciones';
     protected $guarded = [];
     public $timestamps = false;
+
+    public function transacciones() {
+        return $this->hasMany(Transaccion::class);
+    }
 }
