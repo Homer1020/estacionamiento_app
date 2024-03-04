@@ -36,7 +36,10 @@ class TerminalController extends Controller
             'ubicacion_id' => $request->input('ubicacion')
         ]);
 
-        return response()->redirectToRoute('terminals.index');
+        return response()->redirectToRoute('terminals.index')->with('info', [
+            'type'  => 'success',
+            'msg'   => 'Se agrego correctamente.'
+        ]);
     }
 
     public function update(int $id) {
@@ -62,11 +65,20 @@ class TerminalController extends Controller
     public function checkout(Request $request, Transaccion $transaction) {
 
         if(!$request->input('client_id')) {
+            // validate form data
+            $payload = $request->validate([
+                'client_nombre'    => 'string',
+                'client_apellido'  => 'string',
+                'client_cedula'    => 'string',
+                'client_telefono'  => 'string',
+            ]);
+
+            // store client
             $cliente = Cliente::create([
-                'nombre'    => $request->input('client_nombre'),
-                'apellido'    => $request->input('client_apellido'),
-                'cedula'    => $request->input('client_cedula'),
-                'telefono'    => $request->input('client_telefono'),
+                'nombre'    => $payload['client_nombre'],
+                'apellido'    => $payload['client_apellido'],
+                'cedula'    => $payload['client_cedula'],
+                'telefono'    => $payload['client_telefono'],
             ]);
         } else {
             $cliente = Cliente::first('id', $request->input('client_id'));

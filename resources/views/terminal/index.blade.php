@@ -12,6 +12,7 @@
 
 @php
     $heads = [
+        'ID',
         'Vehiculo',
         'Puesto',
         'Fecha entrada',
@@ -20,8 +21,8 @@
     ];
 
     $config = [
-        'order'     => [2, 'desc'],
-        'columns'   => [null, null, null, null, ['orderable' => false]],
+        'order'     => [3, 'desc'],
+        'columns'   => [null, null, null, null, null, ['orderable' => false]],
         'language'  => [
             'url'   => '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json' // this is the solution
         ]
@@ -78,6 +79,7 @@
             >
                 @forelse ($transactions as $transaction)
                     <tr>
+                        <td>#{{ $transaction->id }}</td>
                         <td>{{ $transaction->vehiculo->matricula }}</td>
                         <td>{{ $transaction->ubicacion->ubicacion }}</td>
                         <td>{{ $transaction->fecha_entrada }}</td>
@@ -127,10 +129,5 @@
 
 @section('js')
     <script>
-        // $('#terminal-table').DataTable({
-        //     language: {
-        //        url: '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json',
-        //     }
-        // })
     </script>
 @endsection
