@@ -5,7 +5,7 @@
 @section('title', 'Estacionamiento | Terminal')
 
 @section('content_header')
-    <h1>Terminal</h1>
+    <h1>Reservaciones</h1>
 @stop
 
 @section('content')
@@ -31,7 +31,7 @@
 
 <div class="card">
     <div class="card-body">
-            <form action="{{ route('terminals.store') }}" method="POST">
+            <form action="{{ route('reservaciones.store') }}" method="POST">
                 @csrf
                 <div class="row align-items-end">
                     <div class="col-md-3">
@@ -60,6 +60,13 @@
                             @endforeach
                         </x-adminlte-select>
                         
+                    </div>
+                    <div class="col-md-3">
+                        <x-adminlte-input
+                            name="fecha_entrada"
+                            type="datetime-local"
+                            label="Fecha y hora"
+                        />
                     </div>
                     <div class="col-md-3">
                         <x-adminlte-button

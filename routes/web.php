@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TerminalController;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,14 @@ Route::post('terminal/{transaction}/facturar', [TerminalController::class, 'chec
 Route::get('terminal/{transaction}/facturar', [TerminalController::class, 'checkoutConfirm'])->name('terminals.checkoutConfirm');
 
 Route::get('terminal/factura/{invoice}', InvoiceController::class)->name('invoices.show');
+
+/**
+ * RUTAS RESERVAS
+ */
+Route::resource('reservaciones', ReservationsController::class)
+    ->parameters([
+        'reservaciones' => 'reservation'
+    ]);
 
 /**
  * RUTAS SERVICIOS

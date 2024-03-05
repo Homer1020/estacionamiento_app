@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Parking</b> App',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Parking App Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -312,6 +312,12 @@ return [
             'icon'      => 'fa fa-car',
             'active'    => ['regex:@^terminal/[a-z\-]+$@']
         ],  
+        [
+            'text'      => 'Reservas',
+            'route'     => 'reservaciones.index',
+            'icon'      => 'fa fa-calendar-alt',
+            'active'    => ['regex:@^reservas/[a-z\-]+$@']
+        ],
         [
             'text'        => 'Servicios',
             'route'       => 'services.index',

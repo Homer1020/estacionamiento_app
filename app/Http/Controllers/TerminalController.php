@@ -6,7 +6,6 @@ use App\Models\Cliente;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +13,7 @@ class TerminalController extends Controller
 {
     public function index() {
         $ubications = Ubicacion::with('transacciones')->get();
-        $transactions = Transaccion::with(['vehiculo', 'ubicacion', 'factura'])->orderBy('id', 'DESC')->get();
+        $transactions = Transaccion::where('es_reserva', false)->with(['vehiculo', 'ubicacion', 'factura'])->orderBy('id', 'DESC')->get();
         return view('terminal.index', [
             'transactions'  => $transactions,
             'ubications'   => $ubications
@@ -22,13 +21,17 @@ class TerminalController extends Controller
     }
 
     public function create() {
-        return view('terminal.create');
+        // return view('terminal.create');
     }
 
     public function store(Request $request) {
+        $payload = $request->validate([
+            'matricula' => 'string'
+        ]);
+
         // buscar vehiculo o crear si no existe y estacionarlo
         $vehiculo = Vehiculo::firstOrCreate([
-            'matricula'     => $request->input('matricula')
+            'matricula' => $payload['matricula']
         ]);
 
         if($vehiculo->estacionado) {
