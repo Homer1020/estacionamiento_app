@@ -59,10 +59,7 @@ class ReservationsController extends Controller
 
         $vehiculo->reservado = true;
         $vehiculo->save();
-        return response()->redirectToRoute('reservaciones.index')->with('info', [
-            'type'  => 'success',
-            'msg'   => 'Se agrego correctamente.'
-        ]);
+        return response()->redirectToRoute('reservaciones.index')->with('info', 'Se agrego correctamente.');
     }
 
     /**

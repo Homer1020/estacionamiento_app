@@ -102,11 +102,6 @@
                             @endif
                         </td>
                         <td>
-                            <a href="" class="btn btn-info">
-                                <i class="fa fa-plus"></i>
-                                Servicios
-                            </a>
-                            
                             @if ($transaction->factura)
                                 <a class="btn btn-success" href="{{ route('invoices.show', $transaction->factura) }}">
                                     <i class="fa fa-file-invoice"></i>
