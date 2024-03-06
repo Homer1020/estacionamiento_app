@@ -29,6 +29,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        // a comment
         $request->validate([
             'servicio'      => 'string',
             'costo_x_hora'  => 'integer',
