@@ -45,10 +45,7 @@ class TerminalController extends Controller
 
         $vehiculo->estacionado = true;
         $vehiculo->save();
-        return response()->redirectToRoute('terminals.index')->with('info', [
-            'type'  => 'success',
-            'msg'   => 'Se agrego correctamente.'
-        ]);
+        return response()->redirectToRoute('terminals.index')->with('info', 'Se agrego correctamente.');
     }
 
     public function update(int $id) {
