@@ -37,7 +37,7 @@
     <div class="card-body">
             <form action="{{ route('terminals.store') }}" method="POST">
                 @csrf
-                <div class="row align-items-end">
+                <div class="row align-items-baseline">
                     <div class="col-md-3">
                         <x-adminlte-input
                             name="matricula"
@@ -65,7 +65,7 @@
                         </x-adminlte-select>
                         
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="align-self: flex-end">
                         <x-adminlte-button
                             class="mb-3"
                             label="Registrar"

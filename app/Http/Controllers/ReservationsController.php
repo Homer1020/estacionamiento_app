@@ -37,12 +37,13 @@ class ReservationsController extends Controller
     {
         // return $request->all();
         $payload = $request->validate([
-            'matricula' => 'string'
+            'matricula' => 'string',
+            'fecha_entrada' => 'date|after:now'
         ]);
 
         // buscar vehiculo o crear si no existe y estacionarlo
         $vehiculo = Vehiculo::firstOrCreate([
-            'matricula' => $payload['matricula']
+            'matricula'     => $payload['matricula'],
         ]);
 
         // si el vehiculo esta estacionado o reservado
