@@ -19,15 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->middleware('auth');
 
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('terminal', [TerminalController::class, 'index'])->name('terminals.index');
-Route::get('terminal/registrar-entrada', [TerminalController::class, 'create'])->name('terminals.create');
 Route::post('terminal/registrar-entrada', [TerminalController::class, 'store'])->name('terminals.store');
 Route::put('terminal/{id}/salida', [TerminalController::class, 'update'])->name('terminals.update');
 Route::delete('terminal/{transaction}/eliminar', [TerminalController::class, 'destroy'])->name('terminals.destroy');
@@ -43,6 +42,7 @@ Route::resource('reservaciones', ReservationsController::class)
     ->parameters([
         'reservaciones' => 'reservation'
     ]);
+Route::get('reservaciones/{transaction}/facturar', [TerminalController::class, 'checkoutConfirm'])->name('reservaciones.checkoutConfirm');
 
 /**
  * RUTAS SERVICIOS

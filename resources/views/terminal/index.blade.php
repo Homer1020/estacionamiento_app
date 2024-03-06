@@ -28,7 +28,11 @@
         ]
     ];
 @endphp
-
+@if (session()->has('info'))
+    <div class="alert alert-info">
+        {{ session('info') }}
+    </div>
+@endif
 <div class="card">
     <div class="card-body">
             <form action="{{ route('terminals.store') }}" method="POST">

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->string('anio')->nullable();
             $table->boolean('estacionado')->default(false);
+            $table->boolean('reservado')->default(false);
             $table->timestamps();
         });
     }

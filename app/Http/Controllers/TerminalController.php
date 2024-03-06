@@ -34,8 +34,8 @@ class TerminalController extends Controller
             'matricula' => $payload['matricula']
         ]);
 
-        if($vehiculo->estacionado) {
-            return response()->redirectToRoute('terminals.index');
+        if($vehiculo->estacionado || $vehiculo->reservado) {
+            return response()->redirectToRoute('terminals.index')->with('info', 'Este vehiculo ya está reservado o estacionado.');
         }
 
         // crear transaccion a partir del vehiculo
@@ -63,9 +63,9 @@ class TerminalController extends Controller
         return response()->redirectToRoute('terminals.index');
     }
 
-    public function precheckout(Transaccion $transaction) {
-        return view('facturas.create');
-    }
+    // public function precheckout(Transaccion $transaction) {
+    //     return view('facturas.create');
+    // }
 
     public function checkoutConfirm(Transaccion $transaction) {
         return view('terminal.checkout', compact('transaction'));

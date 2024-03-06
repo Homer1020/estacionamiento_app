@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
@@ -34,7 +35,34 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+        $payload = $request->validate([
+            'matricula' => 'string'
+        ]);
+
+        // buscar vehiculo o crear si no existe y estacionarlo
+        $vehiculo = Vehiculo::firstOrCreate([
+            'matricula' => $payload['matricula']
+        ]);
+
+        // si el vehiculo esta estacionado o reservado
+        if($vehiculo->estacionado || $vehiculo->reservado) {
+            return response()->redirectToRoute('reservaciones.index')->with('info', 'Este vehiculo ya está reservado o estacionado.');
+        }
+
+        // crear transaccion a partir del vehiculo
+        $vehiculo->transacciones()->create([
+            'ubicacion_id'  => $request->input('ubicacion'),
+            'es_reserva'    => true,
+            'fecha_entrada' => $request->input('fecha_entrada')
+        ]);
+
+        $vehiculo->reservado = true;
+        $vehiculo->save();
+        return response()->redirectToRoute('reservaciones.index')->with('info', [
+            'type'  => 'success',
+            'msg'   => 'Se agrego correctamente.'
+        ]);
     }
 
     /**

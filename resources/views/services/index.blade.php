@@ -20,7 +20,7 @@
 <div class="card">
     <div class="card-body">
             <a href="{{ route('services.create') }}" class="btn btn-primary mb-3">Nuevo servicio</a>
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Servicio</th>

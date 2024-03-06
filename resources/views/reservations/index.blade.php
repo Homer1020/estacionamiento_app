@@ -9,7 +9,11 @@
 @stop
 
 @section('content')
-
+@if (session()->has('info'))
+    <div class="alert alert-info">
+        {{ session('info') }}
+    </div>
+@endif
 @php
     $heads = [
         'ID',
@@ -109,7 +113,7 @@
                                     Ver factura
                                 </a>
                             @else
-                                <a href="{{ route('terminals.checkoutConfirm', $transaction) }}" class="btn btn-success">
+                                <a href="{{ route('reservaciones.checkoutConfirm', $transaction) }}" class="btn btn-success">
                                     <i class="fa fa-file-invoice"></i>
                                     Facturar
                                 </a>
