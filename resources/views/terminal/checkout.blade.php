@@ -12,7 +12,6 @@
       <a href="{{ route('terminals.index') }}" class="btn btn-primary mb-3">Regresar</a>
       <form action="{{ route('terminals.checkout', $transaction) }}" method="POST">
         <h2 class="h5 mb-3 text-uppercase">Datos del cliente</h2>
-        <a href="#" class="mb-3 d-block">Este cliente ya existe?</a>
         @if (!$transaction->vehiculo->cliente_id)
           <div class="row">
             <div class="col-md-6">

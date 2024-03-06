@@ -93,6 +93,7 @@ class TerminalController extends Controller
 
         // el vehiculo ya no esta estacionado
         $transaction->vehiculo->estacionado = false;
+        $transaction->vehiculo->reservado = false;
 
         $cliente->vehiculos()->save($transaction->vehiculo);
 
