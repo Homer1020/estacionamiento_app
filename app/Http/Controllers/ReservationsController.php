@@ -47,8 +47,8 @@ class ReservationsController extends Controller
         ]);
 
         // si el vehiculo esta estacionado o reservado
-        if($vehiculo->estacionado || $vehiculo->reservado) {
-            return response()->redirectToRoute('reservaciones.index')->with('info', 'Este vehiculo ya está reservado o estacionado.');
+        if($vehiculo->en_transaccion) {
+            return response()->redirectToRoute('reservaciones.index')->with('info', 'Este vehiculo ya está formando parte de una transaccion.');
         }
 
         // crear transaccion a partir del vehiculo
@@ -58,7 +58,7 @@ class ReservationsController extends Controller
             'fecha_entrada' => $request->input('fecha_entrada')
         ]);
 
-        $vehiculo->reservado = true;
+        $vehiculo->en_transaccion = true;
         $vehiculo->save();
         return response()->redirectToRoute('reservaciones.index')->with('info', 'Se agrego correctamente.');
     }

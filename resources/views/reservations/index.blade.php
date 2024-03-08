@@ -38,7 +38,7 @@
             <form action="{{ route('reservaciones.store') }}" method="POST">
                 @csrf
                 <div class="row align-items-baseline">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <x-adminlte-input
                             name="matricula"
                             type="text"
@@ -47,7 +47,7 @@
                             autocomplete="off"
                         />
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <x-adminlte-select
                             name="ubicacion"
                             type="text"
@@ -65,16 +65,16 @@
                         </x-adminlte-select>
                         
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <x-adminlte-input
                             name="fecha_entrada"
                             type="datetime-local"
                             label="Fecha y hora"
                         />
                     </div>
-                    <div class="col-md-3" style="align-self: flex-end">
+                    <div class="col-md-12" style="align-self: flex-end">
                         <x-adminlte-button
-                            class="mb-3"
+                            class="mb-4"
                             label="Registrar"
                             theme="primary"
                             type="submit"

@@ -55,11 +55,8 @@
                             label="Ubicación"
                         >
                             @foreach ($ubications as $ubication)
-                                @php
-                                    $notAvailable = $ubication->transacciones()->where('fecha_salida', null)->exists()
-                                @endphp
-                                <option value="{{ $ubication->id }}" {{ $notAvailable ? 'disabled' : '' }}>{{ $ubication->ubicacion }} ({{ $ubication->costo_x_hora }}$ la hora)
-                                    {{ $notAvailable ? 'En uso' : 'Disponible' }}
+                                <option value="{{ $ubication->id }}" {{ $ubication->ocupado ? 'disabled' : '' }}>{{ $ubication->ubicacion }} ({{ $ubication->costo_x_hora }}$ la hora)
+                                    {{ $ubication->ocupado ? 'En uso' : 'Disponible' }}
                                 </option>
                             @endforeach
                         </x-adminlte-select>

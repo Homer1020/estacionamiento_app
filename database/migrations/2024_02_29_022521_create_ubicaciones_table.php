@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ubicaciones', function (Blueprint $table) {
             $table->id();
             $table->string('ubicacion');
+            $table->boolean('ocupado')->default(0);
             $table->float('costo_x_hora');
         });
     }

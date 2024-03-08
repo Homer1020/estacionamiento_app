@@ -34,17 +34,19 @@ class TerminalController extends Controller
             'matricula' => $payload['matricula']
         ]);
 
-        if($vehiculo->estacionado || $vehiculo->reservado) {
-            return response()->redirectToRoute('terminals.index')->with('info', 'Este vehiculo ya está reservado o estacionado.');
+        if($vehiculo->en_transaccion) {
+            return response()->redirectToRoute('terminals.index')->with('info', 'Este vehiculo ya está en una transaccion.');
         }
 
         // crear transaccion a partir del vehiculo
-        $vehiculo->transacciones()->create([
+        $transaction = $vehiculo->transacciones()->create([
             'ubicacion_id' => $request->input('ubicacion')
         ]);
 
-        $vehiculo->estacionado = true;
+        $transaction->ubicacion->update(['ocupado' => true]);
+        $vehiculo->en_transaccion = true;
         $vehiculo->save();
+
         return response()->redirectToRoute('terminals.index')->with('info', 'Se agrego correctamente.');
     }
 
@@ -92,8 +94,8 @@ class TerminalController extends Controller
         }
 
         // el vehiculo ya no esta estacionado
-        $transaction->vehiculo->estacionado = false;
-        $transaction->vehiculo->reservado = false;
+        $transaction->vehiculo->en_transaccion = false;
+        $transaction->ubicacion->update(['ocupado' => false]);
 
         $cliente->vehiculos()->save($transaction->vehiculo);
 

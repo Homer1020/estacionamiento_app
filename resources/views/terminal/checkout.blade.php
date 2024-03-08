@@ -67,6 +67,12 @@
             <strong>Costo x hora: </strong> {{ $transaction->ubicacion->costo_x_hora }}$
           </li>
         </ul>
+        <div class="d-block">
+          <a href="#" class="btn btn-outline-primary">
+            <i class="fa fa-plus"></i>
+            Agregar servicio
+          </a>
+        </div>
         @csrf
         <button type="submit" class="btn btn-success mt-3">
           <i class="fa fa-file-invoice"></i>
