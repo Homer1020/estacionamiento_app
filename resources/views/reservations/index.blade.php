@@ -31,6 +31,7 @@
             'url'   => '//cdn.datatables.net/plug-ins/2.0.1/i18n/es-ES.json' // this is the solution
         ]
     ];
+    // testing for github
 @endphp
 
 <div class="card">
@@ -65,7 +66,7 @@
                         </x-adminlte-select>
                         
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4    ">
                         <x-adminlte-input
                             name="fecha_entrada"
                             type="datetime-local"
