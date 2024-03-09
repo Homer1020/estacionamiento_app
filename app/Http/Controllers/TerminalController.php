@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Service;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
@@ -67,11 +68,12 @@ class TerminalController extends Controller
     // }
 
     public function checkoutConfirm(Transaccion $transaction) {
-        return view('terminal.checkout', compact('transaction'));
+        $services = Service::all();
+        return view('terminal.checkout', compact('transaction', 'services'));
     }
 
     public function checkout(Request $request, Transaccion $transaction) {
-
+        return $request->all();
         // manage client
         if(!$request->input('client_id')) {
             // validate form data

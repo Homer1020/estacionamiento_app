@@ -324,17 +324,17 @@ return [
             'icon'        => 'fa fa-hand-holding-heart',
             'active'      => ['regex:@^servicios/[a-z\-\/0-9]+$@']
         ],
-        ['header' => 'CONFIGURACIONES'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // ['header' => 'CONFIGURACIONES'],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',
@@ -410,6 +410,22 @@ return [
     */
 
     'plugins' => [
+        'BootstrapSelect'=> [
+            'active' => true,
+            'files'  => [
+                [
+                    'type'      => 'css',
+                    'asset'     => false,
+                    'location'  => '//cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css'
+                ],
+                [
+                    'type'      => 'js',
+                    'asset'     => false,
+                    'location'  => '//cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js'
+                ],
+                
+            ]
+        ],
         'Datatables' => [
             'active' => true,
             'files' => [

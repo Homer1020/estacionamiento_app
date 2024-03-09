@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Estacionamiento | Facturar')
+@section('plugins.BotstrapSelect', true)
 
 @section('content_header')
     <h1>Facturar</h1>
@@ -67,12 +68,27 @@
             <strong>Costo x hora: </strong> {{ $transaction->ubicacion->costo_x_hora }}$
           </li>
         </ul>
-        <div class="d-block">
-          <a href="#" class="btn btn-outline-primary">
-            <i class="fa fa-plus"></i>
-            Agregar servicio
-          </a>
-        </div>
+          {{-- <select name="servicios[]" id=""></select> --}}
+          <x-adminlte-select-bs
+            name="servicios[]"
+            id="servicios" {{-- this is very important --}}
+            label="Servicios adicionales"
+            data-title="Seleccione una opcion..."
+            data-live-search
+            data-live-search-placeholder="Buscar..."
+            data-show-tick
+            multiple
+          >
+          @foreach ($services as $service)
+            <option
+              data-content="{{ $service->servicio }} <span class='badge badge-success'>{{ $service->costo_x_hora }}$</span>"
+              value="{{ $service->id }}"
+            >
+              {{ $service->servicio }}
+            </option>
+          @endforeach
+        </x-adminlte-select-bs>
+      
         @csrf
         <button type="submit" class="btn btn-success mt-3">
           <i class="fa fa-file-invoice"></i>

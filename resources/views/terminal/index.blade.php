@@ -62,9 +62,9 @@
                         </x-adminlte-select>
                         
                     </div>
-                    <div class="col-md-3" style="align-self: flex-end">
+                    <div class="col-md-12">
                         <x-adminlte-button
-                            class="mb-3"
+                            class="mb-4"
                             label="Registrar"
                             theme="primary"
                             type="submit"
