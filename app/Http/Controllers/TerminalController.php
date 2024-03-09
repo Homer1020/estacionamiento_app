@@ -99,17 +99,20 @@ class TerminalController extends Controller
         // el vehiculo ya no esta estacionado
         $transaction->vehiculo->en_transaccion = false;
         $transaction->ubicacion->update(['ocupado' => false]);
+        $transaction->servicios()->attach($request->input('servicios'));
 
         $cliente->vehiculos()->save($transaction->vehiculo);
 
         $costo_aparcamiento = $transaction->calcular_costo_aparcamiento();
         
+        foreach($transaction->servicios as $service) {
+            $costo_aparcamiento += $service->costo_x_hora;
+        }
+        
         $invoice = $transaction->factura()->create([
             'codigo'      => uniqid(),
             'monto_total' => $costo_aparcamiento
         ]);
-
-        $invoice->servicios()->attach($request->input('servicios'));
 
         return response()->redirectToRoute('invoices.show', compact('invoice'));
     }

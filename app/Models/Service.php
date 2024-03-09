@@ -13,6 +13,6 @@ class Service extends Model
     public $timestamps = false;
 
     public function facturas() {
-        return $this->belongsToMany(Factura::class, 'servicios_factura');
+        return $this->belongsToMany(Transaccion::class, 'servicios_transaccion');
     }
 }

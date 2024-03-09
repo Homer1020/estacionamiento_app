@@ -29,7 +29,7 @@
           <br>
           <strong>Ubicacion: </strong> {{ $invoice->transaccion->ubicacion->ubicacion }}
         </li>
-        @foreach ($invoice->servicios as $service)
+        @foreach ($invoice->transaccion->servicios as $service)
           <li class="list-group-item">
             <h3 class="h6 text-uppercase font-weight-bold">{{ $service->servicio }}</h3>
             <strong>Precio: </strong> {{ $service->costo_x_hora }}$

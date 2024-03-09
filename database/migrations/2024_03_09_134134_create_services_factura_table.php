@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('servicios_factura', function (Blueprint $table) {
+        Schema::create('servicios_transaccion', function (Blueprint $table) {
             $table->id();
             $table->foreignId('servicio_id')->nullable()->references('id')->on('servicios');
-            $table->foreignId('factura_id')->nullable()->references('id')->on('facturas');
+            $table->foreignId('transaccion_id')->nullable()->references('id')->on('transacciones');
         });
     }
 
@@ -23,9 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('servicios_factura', function(Blueprint $table) {
-            $table->dropForeign('servicios_factura_factura_id_foreign');
-            $table->dropForeign('servicios_factura_servicio_id_foreign');
+        Schema::table('servicios_transaccion', function(Blueprint $table) {
+            $table->dropForeign('servicios_transaccion_servicio_id_foreign');
+            $table->dropForeign('servicios_transaccion_transaccion_id_foreign');
         });
         Schema::dropIfExists('servicios_factura');
     }
