@@ -13,4 +13,8 @@ class Factura extends Model
     public function transaccion() {
         return $this->belongsTo(Transaccion::class);
     }
+
+    public function servicios() {
+        return $this->belongsToMany(Service::class, 'servicios_factura', 'factura_id', 'servicio_id');
+    }
 }

@@ -59,8 +59,10 @@ class TerminalController extends Controller
     }
 
     public function destroy(Transaccion $transaction) {
+        $transaction->ubicacion->update(['ocupado' => false]);
+        $transaction->vehiculo->update(['en_transaccion' => false]);
         $transaction->delete();
-        return response()->redirectToRoute('terminals.index');
+        return back();
     }
 
     // public function precheckout(Transaccion $transaction) {
@@ -73,7 +75,6 @@ class TerminalController extends Controller
     }
 
     public function checkout(Request $request, Transaccion $transaction) {
-        return $request->all();
         // manage client
         if(!$request->input('client_id')) {
             // validate form data
@@ -107,6 +108,9 @@ class TerminalController extends Controller
             'codigo'      => uniqid(),
             'monto_total' => $costo_aparcamiento
         ]);
+
+        $invoice->servicios()->attach($request->input('servicios'));
+
         return response()->redirectToRoute('invoices.show', compact('invoice'));
     }
 }

@@ -11,4 +11,8 @@ class Service extends Model
     public $table = 'servicios';
     protected $guarded = [];
     public $timestamps = false;
+
+    public function facturas() {
+        return $this->belongsToMany(Factura::class, 'servicios_factura');
+    }
 }
