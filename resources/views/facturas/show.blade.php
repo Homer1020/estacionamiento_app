@@ -2,8 +2,18 @@
 
 @section('title', 'Estacionamiento | Terminal')
 
+@section('css')
+  <style>
+    @media print {
+      .btn {
+        display: none;
+      }
+    }
+  </style>
+@stop
+
 @section('content_header')
-    <h1>Factura {{ $invoice->id }}</h1>
+  <h1>Factura {{ $invoice->id }}</h1>
 @stop
 
 @section('content')
@@ -39,7 +49,7 @@
 
       <p><strong>Monto total: </strong> {{ $invoice->monto_total }}$</p>
 
-      <a href="" class="btn btn-primary">
+      <a href="#" id="print" class="btn btn-primary">
         <i class="fa fa-file-pdf"></i>
         Imprimir
       </a>
@@ -52,5 +62,13 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+  <script>
+    const $print = document.getElementById('print')
+
+    $print.addEventListener('click', e => {
+      e.preventDefault()
+
+      print()
+    })
+  </script>
 @stop
