@@ -63,7 +63,7 @@
         <ul class="list-group mb-3">
           <li class="list-group-item">
             <h3 class="h6 text-uppercase font-weight-bold">Aparcamiento</h3>
-            <strong>Ubicacion: </strong> {{ $transaction->ubicacion->ubicacion }}
+            <strong>Ubicación: </strong> {{ $transaction->ubicacion->ubicacion }}
             <br>
             <strong>Costo x hora: </strong> {{ $transaction->ubicacion->costo_x_hora }}$
           </li>

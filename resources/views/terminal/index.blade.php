@@ -13,7 +13,7 @@
 @php
     $heads = [
         'ID',
-        'Vehiculo',
+        'Vehículo',
         'Puesto',
         'Fecha entrada',
         'Fecha salida',
@@ -43,7 +43,7 @@
                             name="matricula"
                             type="text"
                             placeholder="xxx xxx xxx"
-                            label="Matricula"
+                            label="Matrícula"
                             autocomplete="off"
                         />
                     </div>

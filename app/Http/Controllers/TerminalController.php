@@ -27,7 +27,7 @@ class TerminalController extends Controller
 
     public function store(Request $request) {
         $payload = $request->validate([
-            'matricula' => 'string'
+            'matricula' => 'required|string'
         ]);
 
         // buscar vehiculo o crear si no existe y estacionarlo
@@ -79,10 +79,10 @@ class TerminalController extends Controller
         if(!$request->input('client_id')) {
             // validate form data
             $payload = $request->validate([
-                'client_nombre'    => 'string',
-                'client_apellido'  => 'string',
-                'client_cedula'    => 'string',
-                'client_telefono'  => 'string',
+                'client_nombre'    => 'required|string',
+                'client_apellido'  => 'required|string',
+                'client_cedula'    => 'required|string',
+                'client_telefono'  => 'required|string',
             ]);
 
             // store client

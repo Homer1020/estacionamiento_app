@@ -24,7 +24,7 @@
       <ul class="list-group mb-3">
         <li class="list-group-item"><strong>Código:</strong> {{ $invoice->codigo }}</li>
         <li class="list-group-item"><strong>Fecha:</strong> {{ $invoice->created_at }}</li>
-        <li class="list-group-item"><strong>Vehiculo:</strong> {{ $invoice->transaccion->vehiculo->matricula }}</li>
+        <li class="list-group-item"><strong>Vehículo:</strong> {{ $invoice->transaccion->vehiculo->matricula }}</li>
       </ul>
 
       <h2 class="h5 mb-3 text-uppercase">Servicios</h2>
@@ -37,7 +37,7 @@
           <br>
           <strong>Salida: </strong> {{ $invoice->transaccion->fecha_salida }}
           <br>
-          <strong>Ubicacion: </strong> {{ $invoice->transaccion->ubicacion->ubicacion }}
+          <strong>Ubicación: </strong> {{ $invoice->transaccion->ubicacion->ubicacion }}
         </li>
         @foreach ($invoice->transaccion->servicios as $service)
           <li class="list-group-item">
