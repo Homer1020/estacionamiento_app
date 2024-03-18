@@ -17,6 +17,13 @@
           <div class="row">
             <div class="col-md-6">
               <x-adminlte-input
+                name="client_cedula"
+                label="Cedula *"
+                nable-old-support
+              />
+            </div>
+            <div class="col-md-6">
+              <x-adminlte-input
                 name="client_nombre"
                 label="Nombre"
               />
@@ -25,12 +32,6 @@
               <x-adminlte-input
                 name="client_apellido"
                 label="Apellido"
-              />
-            </div>
-            <div class="col-md-6">
-              <x-adminlte-input
-                name="client_cedula"
-                label="Cedula"
               />
             </div>
             <div class="col-md-6">

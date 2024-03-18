@@ -13,7 +13,7 @@
 @stop
 
 @section('content_header')
-  <h1>Factura {{ $invoice->id }}</h1>
+  <h1>Factura {{ $invoice->codigo }}</h1>
 @stop
 
 @section('content')

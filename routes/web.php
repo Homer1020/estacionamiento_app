@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('dashboard');
 })->middleware('auth');
 
 Auth::routes();
@@ -34,6 +34,10 @@ Route::post('terminal/{transaction}/facturar', [TerminalController::class, 'chec
 Route::get('terminal/{transaction}/facturar', [TerminalController::class, 'checkoutConfirm'])->name('terminals.checkoutConfirm');
 
 Route::get('terminal/factura/{invoice}', InvoiceController::class)->name('invoices.show');
+
+Route::get('membresias', function() {
+    return '';
+})->name('memberships.index');
 
 /**
  * RUTAS RESERVAS

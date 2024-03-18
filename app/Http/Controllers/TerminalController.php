@@ -79,18 +79,18 @@ class TerminalController extends Controller
         if(!$request->input('client_id')) {
             // validate form data
             $payload = $request->validate([
-                'client_nombre'    => 'required|string',
-                'client_apellido'  => 'required|string',
                 'client_cedula'    => 'required|string',
-                'client_telefono'  => 'required|string',
+                'client_nombre'    => 'nullable|string',
+                'client_apellido'  => 'nullable|string',
+                'client_telefono'  => 'nullable|string',
             ]);
 
-            // store client
-            $cliente = Cliente::create([
-                'nombre'    => $payload['client_nombre'],
-                'apellido'    => $payload['client_apellido'],
+            $cliente = Cliente::firstOrCreate([
                 'cedula'    => $payload['client_cedula'],
-                'telefono'    => $payload['client_telefono'],
+            ], [
+                'nombre'    => $payload['client_nombre'],
+                'apellido'  => $payload['client_apellido'],
+                'telefono'  => $payload['client_telefono'],
             ]);
         } else {
             $cliente = Cliente::first('id', $request->input('client_id'));
