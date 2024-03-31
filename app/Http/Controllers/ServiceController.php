@@ -32,11 +32,12 @@ class ServiceController extends Controller
         // a comment
         $request->validate([
             'servicio'      => 'string',
-            'costo_x_hora'  => 'integer',
+            'costo'  => 'integer',
+            'descripcion' => 'string'
         ]);
         Service::create([
             'servicio'  => $request->input('servicio'),
-            'costo_x_hora'  => $request->input('costo_x_hora'),
+            'costo_x_hora'  => $request->input('costo'),
             'descripcion'  => $request->input('descripcion'),
         ]);
     
@@ -64,8 +65,13 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $servicio)
     {
+        $request->validate([
+            'servicio'      => 'string',
+            'costo'  => 'integer',
+            'descripcion' => 'string'
+        ]);
         $servicio->servicio = $request->input('servicio');
-        $servicio->costo_x_hora = $request->input('costo_x_hora');
+        $servicio->costo_x_hora = $request->input('costo');
         $servicio->descripcion = $request->input('descripcion');
         
         $servicio->save();

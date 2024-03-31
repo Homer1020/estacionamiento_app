@@ -7,16 +7,6 @@
 @stop
 
 @section('content')
-{{-- <x-adminlte-modal id="newService" title="Nuevo servicio" size='lg'>
-  <form action="{{ route('services.store') }}" method="POST">
-    @include('services.form')
-  </form>
-  <x-slot name="footerSlot">
-    <x-adminlte-button theme="primary" label="Agregar"/>
-    <x-adminlte-button theme="secondary" label="Cancelar" data-dismiss="modal"/>
-  </x-slot>
-</x-adminlte-modal> --}}
-
 <div class="card">
     <div class="card-body">
             <a href="{{ route('services.create') }}" class="btn btn-primary mb-3">Nuevo servicio</a>

@@ -45,6 +45,7 @@
                             placeholder="xxx xxx xxx"
                             label="Matrícula"
                             autocomplete="off"
+                            enable-old-support
                         />
                     </div>
                     <div class="col-md-3">

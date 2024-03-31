@@ -46,6 +46,7 @@
                             placeholder="xxx xxx xxx"
                             label="Matrícula"
                             autocomplete="off"
+                            enable-old-support
                         />
                     </div>
                     <div class="col-md-4">
@@ -71,6 +72,7 @@
                             name="fecha_entrada"
                             type="datetime-local"
                             label="Fecha y hora"
+                            enable-old-support
                         />
                     </div>
                     <div class="col-md-12" style="align-self: flex-end">
