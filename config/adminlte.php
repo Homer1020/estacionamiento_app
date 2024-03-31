@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'terminal',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -292,20 +292,9 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'Buscar',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'buscar',
-        // ],
         [
             'text'      => 'Terminal',
             'route'     => 'terminals.index',
