@@ -21,6 +21,7 @@
         autocomplete="off"
         enable-old-support
         value="{{ $servicio->servicio }}"
+        required
       />
       <x-adminlte-input
         name="costo"
@@ -30,6 +31,7 @@
         autocomplete="off"
         enable-old-support
         value="{{ $servicio->costo_x_hora }}"
+        required
       />
 
       <x-adminlte-textarea
@@ -37,6 +39,7 @@
         placeholder="Se lava el vehiculo a mano."
         enable-old-support
         label="Descripcion"
+        required
       >{{ $servicio->descripcion }}</x-adminlte-textarea>
 
       <input type="submit" value="Guardar" class="btn btn-primary">

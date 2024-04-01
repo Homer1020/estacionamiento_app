@@ -46,6 +46,8 @@
                             label="Matrícula"
                             autocomplete="off"
                             enable-old-support
+                            required
+                            pattern="^([A-Z]{1,2})?\d{4}([A-Z]{2,3})$"
                         />
                     </div>
                     <div class="col-md-3">

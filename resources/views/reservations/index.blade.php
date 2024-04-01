@@ -48,6 +48,8 @@
                             autocomplete="off"
                             enable-old-support
                             placeholder="AB1234CD"
+                            required
+                            pattern="^([A-Z]{1,2})?\d{4}([A-Z]{2,3})$"
                         />
                     </div>
                     <div class="col-md-4">
@@ -74,6 +76,7 @@
                             type="datetime-local"
                             label="Fecha y hora"
                             enable-old-support
+                            required
                         />
                     </div>
                     <div class="col-md-12" style="align-self: flex-end">

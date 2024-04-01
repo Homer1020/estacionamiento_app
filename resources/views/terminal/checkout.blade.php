@@ -26,18 +26,21 @@
               <x-adminlte-input
                 name="client_nombre"
                 label="Nombre"
+                nable-old-support
               />
             </div>
             <div class="col-md-6">
               <x-adminlte-input
                 name="client_apellido"
                 label="Apellido"
+                nable-old-support
               />
             </div>
             <div class="col-md-6">
               <x-adminlte-input
                 name="client_telefono"
                 label="Telefono"
+                nable-old-support
               />
             </div>
           </div>
@@ -79,6 +82,7 @@
             data-live-search-placeholder="Buscar..."
             data-show-tick
             multiple
+            nable-old-support
           >
           @foreach ($services as $service)
             <option

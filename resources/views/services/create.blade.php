@@ -19,6 +19,7 @@
         label="Servicio"
         autocomplete="off"
         enable-old-support
+        required
       />
       <x-adminlte-input
         name="costo"
@@ -27,6 +28,7 @@
         label="Costo por hora"
         autocomplete="off"
         enable-old-support
+        required
       />
 
       <x-adminlte-textarea
@@ -34,6 +36,7 @@
         placeholder="Se lava el vehiculo a mano."
         enable-old-support
         label="Descripcion"
+        required
       ></x-adminlte-textarea>
 
       <input type="submit" value="Crear" class="btn btn-primary">

@@ -313,12 +313,12 @@ return [
             'icon'        => 'fa fa-hand-holding-heart',
             'active'      => ['regex:@^servicios/[a-z\-\/0-9]+$@']
         ],
-        [
-            'text'        => 'Membresías',
-            'route'       => 'memberships.index',
-            'icon'        => 'fas fa-user-shield',
-            'active'      => ['regex:@^membresias/[a-z\-\/0-9]+$@']
-        ],
+        // [
+        //     'text'        => 'Membresías',
+        //     'route'       => 'memberships.index',
+        //     'icon'        => 'fas fa-user-shield',
+        //     'active'      => ['regex:@^membresias/[a-z\-\/0-9]+$@']
+        // ],
         // ['header' => 'CONFIGURACIONES'],
         // [
         //     'text' => 'profile',
