@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Transaccion;
 use App\Models\Ubicacion;
 use App\Models\Vehiculo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -78,6 +79,10 @@ class TerminalController extends Controller
     }
 
     public function checkout(Request $request, Transaccion $transaction) {
+        // validate fecha_entrada vs fecha_salida
+        if(Carbon::now()->setTimezone('America/Caracas')->toDateTimeString() < $transaction->fecha_entrada) {
+            return back()->with('info', 'Imposible facturar porque el la fecha de reserva aún no ha llegado siquiera.');
+        }
         // manage client
         if(!$request->input('client_id')) {
             // validate form data

@@ -8,6 +8,11 @@
 @stop
 
 @section('content')
+@if (session()->has('info'))
+    <div class="alert alert-info">
+        {{ session('info') }}
+    </div>
+@endif
 <div class="card">
     <div class="card-body">
       <a href="{{ route('terminals.index') }}" class="btn btn-primary mb-3">Regresar</a>

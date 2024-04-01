@@ -21,7 +21,7 @@ class TerminalSeeder extends Seeder
             $ubicacion = Ubicacion::where('ocupado', '=', false)->inRandomOrder()->first();
             $vehiculo->transacciones()->create([
                 'ubicacion_id' => $ubicacion->id,
-                'fecha_entrada' => Carbon::now()->subHours(6)->toDateTimeString()
+                'fecha_entrada' => Carbon::now()->setTimezone('America/Caracas')->subHours(2)->toDateTimeString()
             ]);
             $ubicacion->ocupado = true;
             $ubicacion->save();
