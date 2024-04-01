@@ -69,7 +69,7 @@ class ServiceController extends Controller
             'servicio'      => 'string',
             'costo'  => 'integer',
             'descripcion' => 'string'
-        ]);
+        ]); 
         $servicio->servicio = $request->input('servicio');
         $servicio->costo_x_hora = $request->input('costo');
         $servicio->descripcion = $request->input('descripcion');

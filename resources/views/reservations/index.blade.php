@@ -47,6 +47,7 @@
                             label="Matrícula"
                             autocomplete="off"
                             enable-old-support
+                            placeholder="AB1234CD"
                         />
                     </div>
                     <div class="col-md-4">

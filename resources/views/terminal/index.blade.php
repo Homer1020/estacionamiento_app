@@ -42,7 +42,7 @@
                         <x-adminlte-input
                             name="matricula"
                             type="text"
-                            placeholder="xxx xxx xxx"
+                            placeholder="AB1234CD"
                             label="Matrícula"
                             autocomplete="off"
                             enable-old-support

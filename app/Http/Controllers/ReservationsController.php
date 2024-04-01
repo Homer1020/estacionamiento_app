@@ -37,8 +37,12 @@ class ReservationsController extends Controller
     {
         // return $request->all();
         $payload = $request->validate([
-            'matricula' => 'required|string',
+            'matricula' => 'required|string|regex:/^([A-Z]{1,2})?\d{4}([A-Z]{2,3})$/',
             'fecha_entrada' => 'required|date|after:now'
+        ],
+        [
+            'matricula.regex' => 'Debe ser similar a AB1234CD, 1234EF, XYZ456',
+            'fecha_entrada' => 'Debe ser un día después'
         ]);
 
         // buscar vehiculo o crear si no existe y estacionarlo
